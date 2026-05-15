@@ -1,0 +1,2 @@
+# Rati
+my blog
