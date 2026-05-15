@@ -1,0 +1,19 @@
+{
+  "name": "rati",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/content": "^3.0.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "better-sqlite3": "^12.10.0",
+    "nuxt": "^4.0.0",
+    "tailwindcss": "^4.0.0",
+    "vue": "latest"
+  }
+}
