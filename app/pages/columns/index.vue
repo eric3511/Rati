@@ -1,10 +1,22 @@
 <script setup lang="ts">
+definePageMeta({
+  layout: 'default',
+  layoutProps: {
+    showSidebar: true,
+  },
+})
+
 const { data: columns } = await useAsyncData('all-columns', () =>
   queryCollection('columns')
     .where('published', '=', true)
     .order('order', 'ASC')
     .all()
 )
+
+useSeoMeta({
+  title: '专栏列表',
+  description: '所有专栏',
+})
 </script>
 
 <template>

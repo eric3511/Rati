@@ -1,10 +1,22 @@
 <script setup lang="ts">
+definePageMeta({
+  layout: 'default',
+  layoutProps: {
+    showSidebar: true,
+  },
+})
+
 const { data: posts } = await useAsyncData('all-posts', () =>
   queryCollection('posts')
     .where('published', '=', true)
     .order('date', 'DESC')
     .all()
 )
+
+useSeoMeta({
+  title: '文章列表',
+  description: '所有博客文章',
+})
 </script>
 
 <template>

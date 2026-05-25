@@ -1,0 +1,16 @@
+- title: 专栏
+  icon: i-lucide-book
+  links:
+    - title: Nuxt 从零开始
+      to: /columns/nuxt-from-scratch
+      icon: i-lucide-rocket
+
+- title: 博客文章
+  icon: i-lucide-rss
+  links:
+    - title: 所有文章
+      to: /posts
+      icon: i-lucide-file-text
+    - title: Hello World
+      to: /posts/hello-world
+      icon: i-lucide-hash

@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(npm install *)",
+      "Bash(npx nuxi *)",
+      "Bash(npx nuxt *)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(git commit *)"
+    ]
+  }
+}
