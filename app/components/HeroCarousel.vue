@@ -40,10 +40,10 @@ onUnmounted(stopAutoPlay)
         </div>
 
         <button class="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm transition-colors" aria-label="Previous slide" @click="prev">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-6 text-white"><path d="m15 18-6-6 6-6" /></svg>
+          <IconChevronLeft size="1.5rem" class="text-white" />
         </button>
         <button class="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm transition-colors" aria-label="Next slide" @click="next">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-6 text-white"><path d="m9 18 6-6-6-6" /></svg>
+          <IconChevronRight size="1.5rem" class="text-white" />
         </button>
 
         <div class="flex justify-center gap-2 mt-4">
