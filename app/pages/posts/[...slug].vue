@@ -1,10 +1,5 @@
 <script setup lang="ts">
-definePageMeta({
-  layout: 'default',
-  layoutProps: {
-    showSidebar: true,
-  },
-})
+definePageMeta({ layout: 'default' })
 
 const route = useRoute()
 const slug = computed(() => (route.params.slug as string[])?.join('/') || '')

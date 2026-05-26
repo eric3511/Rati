@@ -1,10 +1,5 @@
 <script setup lang="ts">
-definePageMeta({
-  layout: 'default',
-  layoutProps: {
-    showSidebar: true,
-  },
-})
+definePageMeta({ layout: 'default' })
 
 const { data: posts } = await useAsyncData('all-posts', () =>
   queryCollection('posts')
