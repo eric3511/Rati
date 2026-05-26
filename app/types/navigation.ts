@@ -10,3 +10,12 @@ export interface NavSection {
   icon?: string
   links: NavLink[]
 }
+
+export interface HeaderNavItem {
+  title: string
+  to?: string
+  icon?: string
+  target?: string
+  children?: HeaderNavItem[]
+  desc?: string
+}

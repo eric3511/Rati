@@ -21,35 +21,31 @@ onUnmounted(stopAutoPlay)
 </script>
 
 <template>
-  <section class="relative w-full bg-muted/30">
-    <div class="container mx-auto px-4 py-8">
-      <div class="relative" @mouseenter="stopAutoPlay" @mouseleave="startAutoPlay">
-        <div class="overflow-hidden rounded-xl">
-          <div class="flex transition-transform duration-500 ease-in-out" :style="{ transform: `translateX(-${current * 100}%)` }">
-            <div v-for="(slide, i) in slides" :key="i" class="w-full flex-shrink-0">
-              <div :class="['relative h-[400px] rounded-xl bg-gradient-to-r overflow-hidden', slide.gradient]">
-                <div class="absolute inset-0 bg-black/20" />
-                <div class="relative h-full flex flex-col items-center justify-center text-center text-white px-8">
-                  <h2 class="text-5xl font-bold mb-4 drop-shadow-lg">{{ slide.title }}</h2>
-                  <p class="text-xl max-w-2xl drop-shadow-md">{{ slide.desc }}</p>
-                  <button class="mt-8 px-8 py-3 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors font-medium">了解更多</button>
-                </div>
-              </div>
+  <div class="relative" @mouseenter="stopAutoPlay" @mouseleave="startAutoPlay">
+    <div class="overflow-hidden rounded-xl">
+      <div class="flex transition-transform duration-500 ease-in-out" :style="{ transform: `translateX(-${current * 100}%)` }">
+        <div v-for="(slide, i) in slides" :key="i" class="w-full flex-shrink-0">
+          <div :class="['relative h-[400px] rounded-xl bg-gradient-to-r overflow-hidden', slide.gradient]">
+            <div class="absolute inset-0 bg-black/20" />
+            <div class="relative h-full flex flex-col items-center justify-center text-center text-white px-8">
+              <h2 class="text-3xl font-bold mb-4 drop-shadow-lg">{{ slide.title }}</h2>
+              <p class="text-lg max-w-2xl drop-shadow-md">{{ slide.desc }}</p>
+              <button class="mt-8 px-8 py-3 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors font-medium">了解更多</button>
             </div>
           </div>
         </div>
-
-        <button class="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm transition-colors" aria-label="Previous slide" @click="prev">
-          <IconChevronLeft size="1.5rem" class="text-white" />
-        </button>
-        <button class="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm transition-colors" aria-label="Next slide" @click="next">
-          <IconChevronRight size="1.5rem" class="text-white" />
-        </button>
-
-        <div class="flex justify-center gap-2 mt-4">
-          <button v-for="(_, i) in slides" :key="i" :class="['w-3 h-3 rounded-full transition-colors', current === i ? 'bg-primary' : 'bg-muted-foreground/40']" :aria-label="`Go to slide ${i + 1}`" @click="goTo(i)" />
-        </div>
       </div>
     </div>
-  </section>
+
+    <button class="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm transition-colors" aria-label="Previous slide" @click="prev">
+      <IconChevronLeft size="1.5rem" class="text-white" />
+    </button>
+    <button class="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm transition-colors" aria-label="Next slide" @click="next">
+      <IconChevronRight size="1.5rem" class="text-white" />
+    </button>
+
+    <div class="flex justify-center gap-2 mt-4">
+      <button v-for="(_, i) in slides" :key="i" :class="['w-3 h-3 rounded-full transition-colors', current === i ? 'bg-primary' : 'bg-muted-foreground/40']" :aria-label="`Go to slide ${i + 1}`" @click="goTo(i)" />
+    </div>
+  </div>
 </template>

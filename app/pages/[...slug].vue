@@ -12,7 +12,7 @@ if (error.value || !page.value) {
 </script>
 
 <template>
-  <div class="max-w-3xl mx-auto px-4 py-12">
+  <div class="max-w-3xl mx-auto px-4 py-12 text-foreground/90 leading-relaxed space-y-4">
     <ContentRenderer v-if="page" :value="page" />
   </div>
 </template>

@@ -63,7 +63,7 @@ onMounted(() => {
 
 <template>
   <nav v-if="filteredHeadings.length > 0" class="space-y-2">
-    <h4 class="text-sm font-semibold text-foreground-secondary mb-3">On this page</h4>
+    <h4 class="text-sm font-semibold text-muted-foreground mb-3">On this page</h4>
     <ul class="space-y-1 text-sm">
       <li v-for="heading in filteredHeadings" :key="heading.id">
         <a
@@ -73,7 +73,7 @@ onMounted(() => {
             heading.depth === 3 ? 'pl-4' : '',
             activeId === heading.id
               ? 'text-primary font-medium'
-              : 'text-foreground-secondary hover:text-foreground'
+              : 'text-muted-foreground hover:text-foreground'
           ]"
         >
           {{ heading.text }}

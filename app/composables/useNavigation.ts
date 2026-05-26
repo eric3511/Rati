@@ -1,7 +1,8 @@
-import type { NavLink, NavSection } from '~/types/navigation'
+import type { NavLink, NavSection, HeaderNavItem } from '~/types/navigation'
 
 export function useNavigation() {
   const navigation = ref<NavSection[]>([])
+  const headerNav = ref<HeaderNavItem[]>([])
 
   const loadNavigation = async () => {
     try {
@@ -13,6 +14,16 @@ export function useNavigation() {
     }
   }
 
+  const loadHeaderNav = async () => {
+    try {
+      const data = await $fetch<HeaderNavItem[]>('/api/header-nav')
+      headerNav.value = data || []
+    } catch (error) {
+      console.warn('Failed to load header nav:', error)
+      headerNav.value = []
+    }
+  }
+
   const route = useRoute()
 
   const isActive = (path: string) => {
@@ -21,11 +32,14 @@ export function useNavigation() {
 
   onMounted(() => {
     loadNavigation()
+    loadHeaderNav()
   })
 
   return {
     navigation,
+    headerNav,
     isActive,
     loadNavigation,
+    loadHeaderNav,
   }
 }

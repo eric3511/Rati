@@ -28,15 +28,17 @@ useSeoMeta({
     <div class="flex-1 max-w-3xl mx-auto px-4 py-12">
       <article v-if="post">
         <header class="mb-8">
-          <h1 class="text-3xl font-bold mb-4">{{ post.title }}</h1>
-          <div class="flex items-center gap-4 text-sm text-foreground-secondary">
+          <h1 class="text-3xl font-bold text-foreground mb-4">{{ post.title }}</h1>
+          <div class="flex items-center gap-4 text-sm text-muted-foreground">
             <time v-if="post.date">{{ post.date }}</time>
             <span v-if="post.tags?.length" class="flex gap-2">
               <ContentBadge v-for="tag in post.tags" :key="tag">{{ tag }}</ContentBadge>
             </span>
           </div>
         </header>
-        <ContentRenderer :value="post" class="prose max-w-none" />
+        <div class="text-foreground/90 leading-relaxed space-y-4">
+          <ContentRenderer :value="post" />
+        </div>
       </article>
     </div>
 

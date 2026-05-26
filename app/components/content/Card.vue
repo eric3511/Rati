@@ -18,7 +18,7 @@ defineProps<{
         </div>
         <div v-if="description || $slots.default" class="flex-1">
           <slot>
-            <p class="text-sm text-foreground-secondary">{{ description }}</p>
+            <p class="text-sm text-muted-foreground">{{ description }}</p>
           </slot>
         </div>
       </div>

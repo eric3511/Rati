@@ -33,7 +33,7 @@ const iconClass = computed(() => props.icon || typeIcons[currentType.value] || t
       <span v-if="title" class="font-semibold">{{ title }}</span>
       <span v-else class="font-semibold capitalize">{{ currentType }}</span>
     </div>
-    <div class="prose prose-sm max-w-none">
+    <div class="text-sm text-foreground/80 leading-relaxed">
       <ContentSlot :use="$slots.default" unwrap="p" />
     </div>
   </div>

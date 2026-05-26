@@ -14,3 +14,10 @@
     - title: Hello World
       to: /posts/hello-world
       icon: i-lucide-hash
+
+- title: 页面
+  icon: i-lucide-info
+  links:
+    - title: 关于我
+      to: /about
+      icon: i-lucide-user

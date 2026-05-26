@@ -1,0 +1,14 @@
+[
+  {
+    "title": "专栏",
+    "to": "/columns"
+  },
+  {
+    "title": "文章",
+    "to": "/posts"
+  },
+  {
+    "title": "关于我",
+    "to": "/about"
+  }
+]

@@ -28,10 +28,12 @@ useSeoMeta({
     <div class="flex-1 max-w-3xl mx-auto px-4 py-12">
       <article v-if="column">
         <header class="mb-8">
-          <h1 class="text-3xl font-bold mb-4">{{ column.title }}</h1>
-          <p v-if="column.description" class="text-foreground-secondary">{{ column.description }}</p>
+          <h1 class="text-3xl font-bold text-foreground mb-4">{{ column.title }}</h1>
+          <p v-if="column.description" class="text-muted-foreground">{{ column.description }}</p>
         </header>
-        <ContentRenderer :value="column" class="prose max-w-none" />
+        <div class="text-foreground/90 leading-relaxed space-y-4">
+          <ContentRenderer :value="column" />
+        </div>
       </article>
     </div>
 
