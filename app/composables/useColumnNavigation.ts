@@ -1,34 +1,33 @@
-export async function useColumnNavigation(columnName?: string) {
-  const key = columnName ? `column-nav-${columnName}` : 'columns-nav-list'
+import type { ColumnChapters } from '~/types/column'
 
-  const { data } = await useAsyncData(key, () =>
+export function useColumnSeries() {
+  return useAsyncData('column-series', () =>
     queryCollection('columns')
       .where('published', '=', true)
       .order('order', 'ASC')
       .all()
+      .then(items => items.filter((item) => {
+        const afterPrefix = item.path.replace(/^\/columns\//, '')
+        return !afterPrefix.includes('/')
+      }))
   )
+}
 
-  const items = data.value
-
-  if (!items?.length) {
-    return columnName ? { overview: null, chapters: [] } : { overviews: [] }
-  }
-
-  if (!columnName) {
-    const overviews = items.filter((item) => {
-      const afterPrefix = item.path.replace(/^\/columns\//, '')
-      return !afterPrefix.includes('/')
-    })
-    return { overviews }
-  }
-
-  const basePath = `/columns/${columnName}`
-  const columnItems = items.filter(
-    (item) => item.path === basePath || item.path.startsWith(`${basePath}/`)
+export function useColumnChapters(seriesName: string, opts?: { watch?: any[] }) {
+  const basePath = `/columns/${seriesName}`
+  return useAsyncData(`column-chapters-${seriesName}`, () =>
+    queryCollection('columns')
+      .where('published', '=', true)
+      .order('order', 'ASC')
+      .all()
+      .then((items) => {
+        const seriesItems = items.filter(
+          (item) => item.path === basePath || item.path.startsWith(`${basePath}/`)
+        )
+        const overview = seriesItems.find((item) => item.path === basePath) ?? null
+        const chapters = seriesItems.filter((item) => item.path !== basePath)
+        return { overview, chapters } as ColumnChapters
+      }),
+    { watch: opts?.watch }
   )
-
-  const overview = columnItems.find((item) => item.path === basePath) ?? null
-  const chapters = columnItems.filter((item) => item.path !== basePath)
-
-  return { overview, chapters }
 }

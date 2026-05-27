@@ -1,72 +1,59 @@
 <script setup lang="ts">
+import type { ColumnMeta } from '~/types/column'
+
 const route = useRoute()
 
 defineProps<{
-  mode: 'list' | 'detail'
-  overviews?: Array<{ title: string; path: string; description?: string }>
-  overview?: { title: string; path: string } | null
-  chapters?: Array<{ title: string; path: string }>
+  seriesName: string
+  overview: ColumnMeta | null
+  chapters: ColumnMeta[]
 }>()
 
 function isActive(path: string) {
-  return route.path === path || route.path.startsWith(`${path}/`)
+  return route.path === path
 }
 </script>
 
 <template>
-  <aside class="w-64 flex-shrink-0 border-r border-border bg-card/50">
-    <div class="h-full flex flex-col">
-      <div class="p-4 border-b border-border">
-        <h3 class="font-semibold text-sm">
-          {{ mode === 'list' ? '专栏' : (overview?.title ?? 'Navigation') }}
-        </h3>
+  <aside class="hidden lg:block w-64 flex-shrink-0 border-r border-border bg-card/50">
+    <div class="sticky top-16 h-[calc(100vh-4rem)] flex flex-col">
+      <div class="px-4 py-3 border-b border-border">
+        <NuxtLink
+          :to="`/columns/${seriesName}`"
+          class="text-sm font-semibold hover:text-primary transition-colors"
+        >
+          {{ overview?.title ?? seriesName }}
+        </NuxtLink>
       </div>
 
-      <nav class="flex-1 overflow-y-auto p-4">
-        <ul v-if="mode === 'list' && overviews" class="space-y-1">
-          <li v-for="col in overviews" :key="col.path">
-            <NuxtLink
-              :to="col.path"
-              :class="[
-                'block px-3 py-2 rounded-md text-sm transition-colors',
-                isActive(col.path)
-                  ? 'bg-primary/10 text-primary font-medium'
-                  : 'text-foreground-secondary hover:bg-muted hover:text-foreground',
-              ]"
-            >
-              {{ col.title }}
-            </NuxtLink>
-          </li>
-        </ul>
+      <nav class="flex-1 overflow-y-auto p-3 space-y-0.5">
+        <template v-if="overview">
+          <NuxtLink
+            :to="overview.path"
+            :class="[
+              'block px-3 py-1.5 rounded-md text-sm transition-colors',
+              isActive(overview.path)
+                ? 'bg-primary/10 text-primary font-medium'
+                : 'text-foreground-secondary hover:bg-muted hover:text-foreground',
+            ]"
+          >
+            概述
+          </NuxtLink>
+        </template>
 
-        <ul v-if="mode === 'detail'" class="space-y-1">
-          <li v-if="overview">
-            <NuxtLink
-              :to="overview.path"
-              :class="[
-                'block px-3 py-2 rounded-md text-sm font-medium transition-colors',
-                isActive(overview.path)
-                  ? 'bg-primary/10 text-primary'
-                  : 'text-foreground-secondary hover:bg-muted hover:text-foreground',
-              ]"
-            >
-              概述
-            </NuxtLink>
-          </li>
-          <li v-for="chapter in chapters" :key="chapter.path">
-            <NuxtLink
-              :to="chapter.path"
-              :class="[
-                'block px-3 py-2 rounded-md text-sm transition-colors',
-                isActive(chapter.path)
-                  ? 'bg-primary/10 text-primary font-medium'
-                  : 'text-foreground-secondary/80 hover:bg-muted hover:text-foreground pl-5',
-              ]"
-            >
-              {{ chapter.title }}
-            </NuxtLink>
-          </li>
-        </ul>
+        <NuxtLink
+          v-for="ch in chapters"
+          :key="ch.path"
+          :to="ch.path"
+          :class="[
+            'block px-3 py-1.5 rounded-md text-sm transition-colors',
+            isActive(ch.path)
+              ? 'bg-primary/10 text-primary font-medium'
+              : 'text-foreground-secondary/80 hover:bg-muted hover:text-foreground',
+          ]"
+        >
+          {{ ch.title }}
+        </NuxtLink>
       </nav>
     </div>
   </aside>
